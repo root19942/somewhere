@@ -1,0 +1,75 @@
+<ion-header>
+    <div class="navbarre">
+        <ion-menu-button float-left clear class="home-options">
+            <ion-icon name="md-menu" style="color:#FFF;font-size: 7vw"></ion-icon>
+        </ion-menu-button>
+  
+    </div>
+</ion-header>
+<ion-content>
+    <div class="contener">
+      <div class="segment">
+          <ion-segment (ionChange)="segmentChanged($event)" color="tertiary" value="mesAdresses">
+              <ion-segment-button value="mesAdresses">
+                <ion-label>Mes Adresses</ion-label>
+              </ion-segment-button>
+              <ion-segment-button value="mesFavories">
+                <ion-label>Mes Favories</ion-label>
+              </ion-segment-button>
+            </ion-segment>
+      </div>
+      <div class="mesAdresses"  *ngIf="typeAdresses == 'mesAdresses'">
+        <ion-list class="listeAdresse">
+            <ion-item *ngFor="let adresse of adresses; let i = index">
+              <ion-avatar slot="start">
+                <img src="{{'https://gravatar.com/avatar/dba6bae8c'+i+'1'}}{{(i + 3)+'59cd9ada7741?d=identicon&f=y'}}">
+              </ion-avatar>
+              <ion-label text-wrap>
+                <ion-text color="primary">
+                  <h3>{{adresse.designation}}</h3>
+                </ion-text>
+                <p>{{truncate(adresse.description)}}</p>
+                <ion-text color="secondary">
+                  <p>{{adresse.nomLieu}}</p>
+                </ion-text>
+              </ion-label>
+              <ion-badge slot="end"  color="primary">{{(i+1)%2}}</ion-badge>
+              <ion-icon name="arrow-forward" slot="end"></ion-icon>
+            </ion-item>
+          </ion-list>
+        </div>        
+
+        <div class="mesFavories"  *ngIf="typeAdresses == 'mesFavories'">
+        <ion-list class="listeAdresse">
+
+            <ion-item-sliding *ngFor="let favorie of favories; let i = index">
+                <ion-item-options side="start">
+                  <ion-item-option   color="warning" (click)="favorite(item)">Modifier</ion-item-option>
+                  <ion-item-option  color="danger" (click)="delFavorie(favorie)">Supprimer</ion-item-option>
+                </ion-item-options>
+            
+                <ion-item >
+                    <ion-avatar slot="start">
+                      <img src="{{'https://gravatar.com/avatar/dba6bae8c'+i+'56d'}}{{(i + 7)+'59cd9ada7741?d=identicon&f=y'}}">
+                    </ion-avatar>
+                    <ion-label text-wrap>
+                      <ion-text color="primary">
+                        <h3>{{favorie.nomFavorie}}</h3>
+                      </ion-text>
+                      <p>{{favorie.designation}}</p>
+                    </ion-label>
+                    <ion-icon name="arrow-forward" slot="end"></ion-icon>
+                  </ion-item>
+            
+                <ion-item-options side="end">
+                  <ion-item-option color="dark" (click)="unread(item)">Itineraire</ion-item-option>
+                  <ion-item-option (click)="partager(item)">Partager</ion-item-option>
+                </ion-item-options>
+              </ion-item-sliding>
+              
+
+          </ion-list>
+        </div>        
+      </div>
+
+</ion-content>

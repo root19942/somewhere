@@ -1,0 +1,10 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>addreference</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-input type="text"  placeholder="Entrer le nom de la ref." class="ref_name" [(ngModel)]="name" id="ref" ></ion-input>
+    <ion-button float-right clear class="home-options" (click)="addfref(name)"></ion-button>
+</ion-content>

@@ -1,0 +1,62 @@
+<ion-header>
+    <div class="navbarre">
+        <ion-menu-button float-left clear class="home-options">
+            <ion-icon name="md-menu" style="color:#FFF;font-size: 7vw"></ion-icon>
+        </ion-menu-button>
+    </div>
+</ion-header>
+
+<ion-content>
+        <ion-card class="adresse_ajt">
+                <img src="/assets/maison.png" class="adresse_illustration">
+                <ion-card-header>
+                    <ion-card-title>Cree une adresse</ion-card-title>
+                    <ion-card-subtitle>{{adresse.lat}},{{adresse.lng}}</ion-card-subtitle>
+                    
+                  </ion-card-header>
+                <ion-card-content>
+                    <ion-grid>
+                        <ion-row>
+                          <ion-col size="6">
+                            Quater: {{osm?.address?.suburb}}
+                          </ion-col>
+                          <ion-col size="6">
+                            Rue: {{osm?.sw_way?.name}} <em *ngIf="osm?.name">({{osm?.name}})</em><em *ngIf="!osm?.name">(Pas de nom)</em>
+                          </ion-col>
+                        </ion-row>
+                        <ion-row>
+                          <ion-col size="6">
+                            Pays: {{osm?.address?.country}}
+                          </ion-col>
+                          <ion-col size="6">
+                            Commune : {{osm?.address?.city}} {{osm?.address?.town}}
+                          </ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <ion-grid>
+                              <ion-row>
+                                <ion-col size="12">
+                                  <p>References:</p>
+                                </ion-col>
+                              </ion-row>
+                              <ion-row>
+                                <ion-col size="5" class="reference_adresse" *ngIf="ref[0]">
+                                  reference i &nbsp; <ion-icon name="close-circle" class="cancel_ref"></ion-icon>
+                                </ion-col>
+                                <ion-col size="5" class="reference_adresse"  *ngIf="ref[1]">
+                                  reference ii &nbsp; <ion-icon name="close-circle" class="cancel_ref"></ion-icon>
+                                </ion-col>
+                              </ion-row>
+                            </ion-grid>
+                        </ion-row>
+                        <ion-row>
+                          <ion-col size="12" style="text-align: center">
+                              <ion-button shape="round" (click)="addref()">Ajourer une reference</ion-button>
+                          </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </ion-card-content>
+        </ion-card>
+
+    <ion-button expand="block" shape="round" (click)="creatAdresse()">Créé L'adresse</ion-button>
+</ion-content>

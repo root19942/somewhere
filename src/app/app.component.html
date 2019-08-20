@@ -1,0 +1,70 @@
+<ion-app>
+  <ion-split-pane>
+    <ion-menu type="overlay">
+      <ion-content>
+        <ion-header class="menuHeader">
+            <ion-row class="menuHeaderTop">
+                <ion-col size="12">
+                   <br>
+                  </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col size="2" offset="10" style="height: 20px;color: #FFF;text-align: right;">
+                  <ion-menu-toggle>
+                      <ion-icon name="close" style="color: #FFF;zoom: 3;"></ion-icon>
+                  </ion-menu-toggle>
+                </ion-col>
+            </ion-row>
+            <ion-row style="align-items:center;">
+                <ion-col size="6" offset="2">
+                  <img class="user-avatar round" [src]="chosenPicture || placeholder" onerror="this.src='https://picsum.photos/200'"
+                  />
+                </ion-col>
+              </ion-row>
+              <ion-row >
+                  <ion-col size="10" style="justify-content: center;text-align: center">
+                    <h3>Deugoue Kemayou</h3>
+                    <em class="subtext">@2145 Bobongo Douala3</em>&nbsp;&nbsp;
+                    <ion-icon name="arrow-down"></ion-icon>
+                  </ion-col>
+              </ion-row>
+              <ion-row style="justify-content: center;">
+                <br>
+              </ion-row>
+              <ion-fab vertical="bottom" horizontal="end" edge slot="fixed">
+                <ion-menu-toggle>
+                    <ion-fab-button  [routerDirection]="'root'" [routerLink]="['/addadresse']">
+                      <ion-icon name="add"></ion-icon>
+                    </ion-fab-button>
+                </ion-menu-toggle>
+              </ion-fab>
+        </ion-header>
+        <ion-list >
+          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages" >
+            <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
+              <ion-icon slot="start" [name]="p.icon"></ion-icon>
+              <ion-label>
+                {{p.title}}
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+
+      </ion-content>
+
+      <ion-footer>
+            <ion-list >
+                <ion-menu-toggle auto-hide="false" *ngFor="let p of appPagesFooter" >
+                  <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
+                    <ion-icon slot="start" [name]="p.icon"></ion-icon>
+                    <ion-label>
+                      {{p.title}}
+                    </ion-label>
+                  </ion-item>
+                </ion-menu-toggle>
+              </ion-list>
+      </ion-footer>
+    </ion-menu>
+    <ion-router-outlet main></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>
